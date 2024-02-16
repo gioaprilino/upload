@@ -11,19 +11,15 @@ else
     echo "GitHub CLI 'gh' is already installed."
 fi
 
-# Check if user is already authenticated
-if ! gh auth status &> /dev/null; then
-    # User not authenticated, perform login
-    gh auth login
-else
-    echo "Already authenticated with GitHub."
-fi
+
+gh auth login
+
 
 # Prompt the user for the version
-read -p "Enter the release tag name (default: Bananadroid-Uli-Unofficial-$(date '+%Y%m%d')): " custom_version
+read -p "Enter the release tag name (default: Bananadroid-Uli-unofficial-$(date '+%Y%m%d')): " custom_version
 
 # Set the version with default if not provided
-version=${custom_version:-"Bananadroid-Uli-Unofficial-$(date '+%Y%m%d')"}
+version=${custom_version:-"Bananadroid-Uli-unofficial-$(date '+%Y%m%d')"}
 
 # Check if the tag already exists
 if gh release view "$version" &> /dev/null; then
